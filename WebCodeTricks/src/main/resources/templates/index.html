@@ -20,8 +20,7 @@
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Celular</th>
-                                    <th>Email</th>
+                                    <th>Login</th>
                                     <th>Senha</th>
                                     <th>Editar</th>
                                     <th>Deletar</th>
@@ -30,8 +29,7 @@
                             <tbody>
                                 <tr th:each="usuario : ${usuarios}">
                                     <td th:text="${usuario.nome}"></td>
-                                    <td th:text="${usuario.celular}"></td>
-                                    <td th:text="${usuario.email}"></td>
+                                    <td th:text="${usuario.login}"></td>
                                     <td th:text="${usuario.senha}"></td>
                                     <td><a th:href="@{/editar/{id}(id=${usuario.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                     <td><a th:href="@{/deletar/{id}(id=${usuario.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
