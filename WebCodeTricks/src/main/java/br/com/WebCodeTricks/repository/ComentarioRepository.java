@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
-    Optional<Comentario> findByIdComentario(long idComentario);
+    Comentario findByIdComentario(long idComentario);
 
-    List<Comentario> findAllByUsuario(Usuario usuario);
+    Comentario findAllByUsuario(Usuario usuario);
 }

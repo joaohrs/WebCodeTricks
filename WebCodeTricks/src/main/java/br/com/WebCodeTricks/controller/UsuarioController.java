@@ -2,6 +2,8 @@ package br.com.WebCodeTricks.controller;
 
 import javax.validation.Valid;
 
+import br.com.WebCodeTricks.repository.ComentarioRepository;
+import br.com.WebCodeTricks.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.WebCodeTricks.model.Usuario;
-import br.com.WebCodeTricks.repository.UsuarioRepository;
+
 
 @Controller
 public class UsuarioController {
@@ -23,8 +25,10 @@ public class UsuarioController {
         this.usuarioRepository = usuarioRepository;
     }
 
+
     @GetMapping("/signup")
     public String showSignUpForm(Usuario usuario) {
+
         return "add-usuario";
     }
 
@@ -36,17 +40,17 @@ public class UsuarioController {
 
         usuarioRepository.save(usuario);
         model.addAttribute("usuarios", usuarioRepository.findAll());
-        return "index";
+        return "usuarios";
     }
 
-    @GetMapping("/editar/{id}")
+    @GetMapping("/editusuario/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário Inválido do Id:" + id));
         model.addAttribute("usuario", usuario);
         return "editar-usuario";
     }
 
-    @PostMapping("/alterar/{id}")
+    @PostMapping("/alterusuario/{id}")
     public String alterarUsuario(@PathVariable("id") long id, @Valid Usuario usuario, BindingResult result,
             Model model) {
         if(result.hasErrors()){
@@ -56,14 +60,14 @@ public class UsuarioController {
         
     usuarioRepository.save(usuario);
     model.addAttribute("usuarios", usuarioRepository.findAll());
-    return "index";
+    return "usuarios";
     }
 
-    @GetMapping("/deletar/{id}")
+    @GetMapping("/delusuario/{id}")
     public String deletarUsuario(@PathVariable("id") long id, Model model){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário Inválido do Id:" + id));
         usuarioRepository.delete(usuario);
         model.addAttribute("usuarios", usuarioRepository.findAll());
-        return "index";
+        return "usuarios";
     }
 }

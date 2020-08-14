@@ -28,7 +28,8 @@ public class Comentario {
     @Lob
     private String conteudoComen;
 
-    private Date dataComen;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "MM-dd-yyyy")
+    private LocalDate dataComen;
 
     private Integer pontuacao;
 

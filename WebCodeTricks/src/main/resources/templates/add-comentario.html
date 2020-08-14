@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Comentario</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="style/styleCss.css"/>-->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
 </head>
 <body>
+    <div class="container my-5">
+        <h2 class="mb-5">Novo Comentario</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <th:block th:include="mensagemValidacao"></th:block>
+                <form action="#" th:action="@{/addcomen}" th:object="${comentario}" method="post">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="conteudoComen" class="col-form-label">Comentario</label>
+                            <textarea type="text" class="form-control" name="conteudoComen" id="conteudoComen" placeholder="Comentario *"></textarea>
+                            <span th:if="${#fields.hasErrors('conteudoComen')}" th:errors="*{conteudoComen}" class="text-danger"></span>
+                        </div>
 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <input type="submit" class="btn btn-primary" value="Add Comentario">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+    CKEDITOR.replace( 'conteudoComen' );
+</script>
 </body>
 </html>
